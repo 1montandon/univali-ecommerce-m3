@@ -4,14 +4,12 @@ services:
     container_name: univali_ecommerce_mysql
     environment:
       MYSQL_DATABASE: univali_ecommerce
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: docker
+      MYSQL_ROOT_PASSWORD: yanMonta
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
       # - ./initdb:/docker-entrypoint-initdb.d
-    
 
 volumes:
   db_data:
