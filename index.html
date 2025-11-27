@@ -77,7 +77,6 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password }),
-                    credentials: "include",
                 });
 
                 const data = await res.json();
@@ -92,7 +91,6 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password }),
-                    credentials: "include", // ← necessário pro refreshToken via cookie
                 });
 
                 const data = await res.json();
@@ -104,7 +102,6 @@
             async function refreshToken() {
                 const res = await fetch(API_URL + "/refresh", {
                     method: "POST",
-                    credentials: "include",
                 });
 
                 const data = await res.json();
@@ -116,7 +113,6 @@
             async function logout() {
                 const res = await fetch(API_URL + "/logout", {
                     method: "POST",
-                    credentials: "include",
                 });
 
                 showResponse("Logout feito.");

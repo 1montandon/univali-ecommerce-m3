@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.0.0",
   "engineVersion": "0c19ccc313cf9911a90d99d2ac2eb0280c76c513",
   "activeProvider": "mysql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../db/client\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id            Int            @id @default(autoincrement())\n  username      String         @unique\n  password      String\n  createdAt     DateTime       @default(now())\n  refreshTokens RefreshToken[]\n}\n\nmodel RefreshToken {\n  id     String @id @unique // UUID or random string\n  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)\n  userId Int\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  expiresAt DateTime\n  revokedAt DateTime? // null = active token\n\n  userAgent String? // optional but SUPER useful\n  ipAddress String? // optional\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../db/client\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  username  String   @unique\n  password  String\n  createdAt DateTime @default(now()) @map(\"created_at\")\n\n  @@map(\"users\")\n}\n\nmodel Produto {\n  id        Int     @id @default(autoincrement())\n  titulo    String\n  preco     Decimal @db.Decimal(10, 2)\n  categoria String\n  imagemUrl String  @map(\"imagem_url\")\n  descricao String  @db.Text\n  estoque   Int\n\n  itensPedido ItensPedido[]\n\n  @@map(\"produtos\")\n}\n\nmodel Cliente {\n  id    Int    @id @default(autoincrement())\n  nome  String\n  email String @unique\n\n  pedidos Pedido[]\n\n  @@map(\"clientes\")\n}\n\nmodel Pedido {\n  id        Int      @id @default(autoincrement())\n  data      DateTime @default(now())\n  clienteId Int      @map(\"cliente_id\")\n  total     Decimal  @db.Decimal(10, 2)\n\n  cliente Cliente       @relation(fields: [clienteId], references: [id])\n  itens   ItensPedido[]\n\n  @@map(\"pedidos\")\n}\n\nmodel ItensPedido {\n  id         Int     @id @default(autoincrement())\n  pedidoId   Int     @map(\"pedido_id\")\n  produtoId  Int     @map(\"produto_id\")\n  quantidade Int\n  precoUnit  Decimal @map(\"preco_unit\") @db.Decimal(10, 2)\n\n  pedido  Pedido  @relation(fields: [pedidoId], references: [id])\n  produto Produto @relation(fields: [produtoId], references: [id])\n\n  @@map(\"itens_pedido\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refreshTokens\",\"kind\":\"object\",\"type\":\"RefreshToken\",\"relationName\":\"RefreshTokenToUser\"}],\"dbName\":null},\"RefreshToken\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RefreshTokenToUser\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"revokedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userAgent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"}],\"dbName\":\"users\"},\"Produto\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"titulo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"preco\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"categoria\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imagemUrl\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"imagem_url\"},{\"name\":\"descricao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"estoque\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"itensPedido\",\"kind\":\"object\",\"type\":\"ItensPedido\",\"relationName\":\"ItensPedidoToProduto\"}],\"dbName\":\"produtos\"},\"Cliente\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pedidos\",\"kind\":\"object\",\"type\":\"Pedido\",\"relationName\":\"ClienteToPedido\"}],\"dbName\":\"clientes\"},\"Pedido\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"data\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"clienteId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"cliente_id\"},{\"name\":\"total\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"cliente\",\"kind\":\"object\",\"type\":\"Cliente\",\"relationName\":\"ClienteToPedido\"},{\"name\":\"itens\",\"kind\":\"object\",\"type\":\"ItensPedido\",\"relationName\":\"ItensPedidoToPedido\"}],\"dbName\":\"pedidos\"},\"ItensPedido\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"pedidoId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"pedido_id\"},{\"name\":\"produtoId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"produto_id\"},{\"name\":\"quantidade\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"precoUnit\",\"kind\":\"scalar\",\"type\":\"Decimal\",\"dbName\":\"preco_unit\"},{\"name\":\"pedido\",\"kind\":\"object\",\"type\":\"Pedido\",\"relationName\":\"ItensPedidoToPedido\"},{\"name\":\"produto\",\"kind\":\"object\",\"type\":\"Produto\",\"relationName\":\"ItensPedidoToProduto\"}],\"dbName\":\"itens_pedido\"}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -185,14 +185,44 @@ export interface PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.refreshToken`: Exposes CRUD operations for the **RefreshToken** model.
+   * `prisma.produto`: Exposes CRUD operations for the **Produto** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more RefreshTokens
-    * const refreshTokens = await prisma.refreshToken.findMany()
+    * // Fetch zero or more Produtos
+    * const produtos = await prisma.produto.findMany()
     * ```
     */
-  get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, { omit: OmitOpts }>;
+  get produto(): Prisma.ProdutoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.cliente`: Exposes CRUD operations for the **Cliente** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Clientes
+    * const clientes = await prisma.cliente.findMany()
+    * ```
+    */
+  get cliente(): Prisma.ClienteDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.pedido`: Exposes CRUD operations for the **Pedido** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Pedidos
+    * const pedidos = await prisma.pedido.findMany()
+    * ```
+    */
+  get pedido(): Prisma.PedidoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.itensPedido`: Exposes CRUD operations for the **ItensPedido** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ItensPedidos
+    * const itensPedidos = await prisma.itensPedido.findMany()
+    * ```
+    */
+  get itensPedido(): Prisma.ItensPedidoDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

@@ -45,7 +45,22 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
- * Model RefreshToken
+ * Model Produto
  * 
  */
-export type RefreshToken = Prisma.RefreshTokenModel
+export type Produto = Prisma.ProdutoModel
+/**
+ * Model Cliente
+ * 
+ */
+export type Cliente = Prisma.ClienteModel
+/**
+ * Model Pedido
+ * 
+ */
+export type Pedido = Prisma.PedidoModel
+/**
+ * Model ItensPedido
+ * 
+ */
+export type ItensPedido = Prisma.ItensPedidoModel

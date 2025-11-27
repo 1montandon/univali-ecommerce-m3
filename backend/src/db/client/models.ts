@@ -9,5 +9,8 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User.ts'
-export type * from './models/RefreshToken.ts'
+export type * from './models/Produto.ts'
+export type * from './models/Cliente.ts'
+export type * from './models/Pedido.ts'
+export type * from './models/ItensPedido.ts'
 export type * from './commonInputTypes.ts'
