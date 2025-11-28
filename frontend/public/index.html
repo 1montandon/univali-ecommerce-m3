@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Picota Shop | Catálogo logo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body style="font-family: Inter, 'Noto Sans', sans-serif">
+    <header
+      class="flex items-center justify-between border-b border-solid border-b-[#f0f2f4] px-50 py-3"
+    >
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-2 text-[#111418]">
+          <span class="text-[#111418] material-symbols-outlined">
+            verified
+          </span>
+          <h2 class="text-[#111418] text-lg font-bold leading-tight">
+            Picota Shop
+          </h2>
+        </div>
+      </div>
+      <div class="flex flex-1 justify-end gap-8">
+        <div class="flex gap-2">
+          <button
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+          >
+            <span class="material-symbols-outlined"> favorite </span>
+          </button>
+          <button
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+          >
+            <div
+              class="text-[#111418]"
+              data-icon="ShoppingBag"
+              data-size="20px"
+            >
+              <span class="material-symbols-outlined"> shopping_bag </span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="px-50 flex gap-5 flex-col py-5">
+      <div class="flex flex-col gap-2">
+        <label class="flex flex-col min-w-40 h-12 w-full">
+          <div class="flex w-full items-stretch rounded-lg h-full">
+            <div
+              class="text-[#617589] flex border-none bg-[#f0f2f4] items-center justify-center pl-4 rounded-l-lg border-r-0"
+              data-icon="MagnifyingGlass"
+              data-size="24px"
+              data-weight="regular"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24px"
+                height="24px"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                ></path>
+              </svg>
+            </div>
+            <input
+              placeholder="Search for products"
+              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-full placeholder:text-[#617589] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+              value=""
+            />
+          </div>
+        </label>
+        <div class="flex gap-3 flex-wrap">
+          <div
+            class="flex h-8 shrink-0 transition items-center justify-center gap-x-2 rounded-lg pl-4 pr-4"
+            id="filtro-todas"
+          >
+            <p class="text-[#111418] text-sm font-medium leading-normal">
+              Todas
+            </p>
+          </div>
+          <div
+            class="flex h-8 shrink-0 transition items-center justify-center gap-x-2 rounded-lg pl-4 pr-4"
+            id="filtro-roupas"
+            data-categoria="men's clothing"
+          >
+            <p class="text-[#111418] text-sm font-medium leading-normal">
+              Roupas Masculinas
+            </p>
+          </div>
+          <div
+            class="flex h-8 shrink-0 transition items-center justify-center gap-x-2 rounded-lg pl-4 pr-4"
+            id="filtro-joias"
+            data-categoria="jewelery"
+          >
+            <p class="text-[#111418] text-sm font-medium leading-normal">
+              Joias
+            </p>
+          </div>
+          <div
+            class="flex h-8 shrink-0 transition items-center justify-center gap-x-2 rounded-lg pl-4 pr-4"
+            id="filtro-eletronicos"
+            data-categoria="electronics"
+          >
+            <p class="text-[#111418] text-sm font-medium leading-normal">
+              Eletrônicos
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h2 class="text-[#111418] text-[22px] font-bold">Catalogo</h2>
+
+        <div class="flex flex-wrap justify-between" id="lista-produtos">
+          <div class="flex flex-col gap-3 w-[200px]">
+            <div class="p-2">
+              <div
+                class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBe0fWV1eZXQ4VoWvsoDapN2MYkYNj7yPRAoCOcSkLobFW91qQ3CvoKR-qDAin2OQBGWcNSaLkVjcALAiP_VwS7mpratrvikBdJIvR9EvYXSjni9Cgxq0MDnw8ynX3-hej19X_piVR5kQtAk5qAu2Bcw0r8L_9-oZp8SG_xsdLa98WAvOuIclOdXxj7vrNqziBUkczDnBGaj5loaK-u7DZxhWxwrvjvdVIM7jtfhj8Smy8GSMDdMsQGtG1hGQsISIuATcUypJWs0Kol');
+                "
+              ></div>
+            </div>
+
+            <div>
+              <p class="text-[#111418] text-base font-medium leading-normal">
+                Classic White Tee
+              </p>
+              <div class="flex flex-row">
+                <p class="text-[#617589] text-sm font-normal leading-normal">
+                  $25
+                </p>
+                <div class="bg-[#111418]" >
+                  <span class="material-symbols-outlined">
+                    add_shopping_cart
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script type="module" src="../js/catalogo.js"></script>
+</html>
