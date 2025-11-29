@@ -5,6 +5,7 @@ import { apiFetch } from "./api.js";
 
   const container = document.getElementById("lista-carrinho");
   const totalGeralEl = document.getElementById("total-geral");
+  const finalizarCompra = document.getElementById("finalizar-compra");
 
   carregarCarrinho();
 
@@ -19,7 +20,7 @@ import { apiFetch } from "./api.js";
       return;
     }
 
-    container.innerHTML = "";
+    container.innerHTML = ``;
 
     let totalGeral = 0;
 
@@ -64,7 +65,7 @@ import { apiFetch } from "./api.js";
 
         </div>
 
-        
+  
       `;
 
       card.querySelector(".remove-item").addEventListener("click", () => {
@@ -78,6 +79,11 @@ import { apiFetch } from "./api.js";
       container.appendChild(card);
     }
 
+    finalizarCompra.innerHTML = `       <div class="flex items-center justify-end">
+            <button type="button" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 checkout-btn" onclick="window.location.href='http://127.0.0.1:5500/frontend/public/checkout.html'">
+                Finalizar Compra
+            </button>
+        </div>`;
     totalGeralEl.textContent = `R$ ${totalGeral.toFixed(2)}`;
   }
 

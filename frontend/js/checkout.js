@@ -20,7 +20,7 @@ import { apiFetch } from "./api.js";
     resumoItens.innerHTML = "";
 
     for (const item of carrinho) {
-      const res = await apiFetch(`/produto/${item.produtoId}`);
+      const res = await apiFetch(`/produtos/${item.produtoId}`);
       const produto = await res.json();
 
       const subtotal = produto.preco * item.quantidade;
@@ -48,14 +48,14 @@ import { apiFetch } from "./api.js";
     const email = document.getElementById("email").value;
 
     try {
-      const resposta = await apiFetch("/pedido/finalizar", {
+      const resposta = await apiFetch("/pedidos/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        body: {
           nome,
           email,
           itens: carrinho,
-        }),
+        },
       });
 
       const json = await resposta.json();
