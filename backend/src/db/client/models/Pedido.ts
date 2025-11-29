@@ -216,7 +216,7 @@ export type PedidoWhereInput = {
   data?: Prisma.DateTimeFilter<"Pedido"> | Date | string
   clienteId?: Prisma.IntFilter<"Pedido"> | number
   total?: Prisma.DecimalFilter<"Pedido"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
+  cliente?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   itens?: Prisma.ItensPedidoListRelationFilter
 }
 
@@ -225,7 +225,7 @@ export type PedidoOrderByWithRelationInput = {
   data?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   total?: Prisma.SortOrder
-  cliente?: Prisma.ClienteOrderByWithRelationInput
+  cliente?: Prisma.UserOrderByWithRelationInput
   itens?: Prisma.ItensPedidoOrderByRelationAggregateInput
 }
 
@@ -237,7 +237,7 @@ export type PedidoWhereUniqueInput = Prisma.AtLeast<{
   data?: Prisma.DateTimeFilter<"Pedido"> | Date | string
   clienteId?: Prisma.IntFilter<"Pedido"> | number
   total?: Prisma.DecimalFilter<"Pedido"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
+  cliente?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   itens?: Prisma.ItensPedidoListRelationFilter
 }, "id">
 
@@ -266,7 +266,7 @@ export type PedidoScalarWhereWithAggregatesInput = {
 export type PedidoCreateInput = {
   data?: Date | string
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
-  cliente: Prisma.ClienteCreateNestedOneWithoutPedidosInput
+  cliente: Prisma.UserCreateNestedOneWithoutPedidosInput
   itens?: Prisma.ItensPedidoCreateNestedManyWithoutPedidoInput
 }
 
@@ -281,7 +281,7 @@ export type PedidoUncheckedCreateInput = {
 export type PedidoUpdateInput = {
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  cliente?: Prisma.ClienteUpdateOneRequiredWithoutPedidosNestedInput
+  cliente?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   itens?: Prisma.ItensPedidoUpdateManyWithoutPedidoNestedInput
 }
 
@@ -468,7 +468,7 @@ export type PedidoScalarWhereInput = {
 export type PedidoCreateWithoutItensInput = {
   data?: Date | string
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
-  cliente: Prisma.ClienteCreateNestedOneWithoutPedidosInput
+  cliente: Prisma.UserCreateNestedOneWithoutPedidosInput
 }
 
 export type PedidoUncheckedCreateWithoutItensInput = {
@@ -497,7 +497,7 @@ export type PedidoUpdateToOneWithWhereWithoutItensInput = {
 export type PedidoUpdateWithoutItensInput = {
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  cliente?: Prisma.ClienteUpdateOneRequiredWithoutPedidosNestedInput
+  cliente?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutItensInput = {
@@ -568,7 +568,7 @@ export type PedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   data?: boolean
   clienteId?: boolean
   total?: boolean
-  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  cliente?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   itens?: boolean | Prisma.Pedido$itensArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedido"]>
@@ -584,7 +584,7 @@ export type PedidoSelectScalar = {
 
 export type PedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "data" | "clienteId" | "total", ExtArgs["result"]["pedido"]>
 export type PedidoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  cliente?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   itens?: boolean | Prisma.Pedido$itensArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -592,7 +592,7 @@ export type PedidoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type $PedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pedido"
   objects: {
-    cliente: Prisma.$ClientePayload<ExtArgs>
+    cliente: Prisma.$UserPayload<ExtArgs>
     itens: Prisma.$ItensPedidoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -940,7 +940,7 @@ readonly fields: PedidoFieldRefs;
  */
 export interface Prisma__PedidoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  cliente<T extends Prisma.ClienteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClienteDefaultArgs<ExtArgs>>): Prisma.Prisma__ClienteClient<runtime.Types.Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  cliente<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   itens<T extends Prisma.Pedido$itensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$itensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItensPedidoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.

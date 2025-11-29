@@ -53,7 +53,6 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Produto: 'Produto',
-  Cliente: 'Cliente',
   Pedido: 'Pedido',
   ItensPedido: 'ItensPedido'
 } as const
@@ -76,7 +75,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  username: 'username',
+  email: 'email',
   password: 'password',
   createdAt: 'createdAt'
 } as const
@@ -95,15 +94,6 @@ export const ProdutoScalarFieldEnum = {
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
-
-
-export const ClienteScalarFieldEnum = {
-  id: 'id',
-  nome: 'nome',
-  email: 'email'
-} as const
-
-export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
 
 
 export const PedidoScalarFieldEnum = {
@@ -136,7 +126,7 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
 export const UserOrderByRelevanceFieldEnum = {
-  username: 'username',
+  email: 'email',
   password: 'password'
 } as const
 
@@ -151,12 +141,4 @@ export const ProdutoOrderByRelevanceFieldEnum = {
 } as const
 
 export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]
-
-
-export const ClienteOrderByRelevanceFieldEnum = {
-  nome: 'nome',
-  email: 'email'
-} as const
-
-export type ClienteOrderByRelevanceFieldEnum = (typeof ClienteOrderByRelevanceFieldEnum)[keyof typeof ClienteOrderByRelevanceFieldEnum]
 

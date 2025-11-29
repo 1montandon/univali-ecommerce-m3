@@ -386,7 +386,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Produto: 'Produto',
-  Cliente: 'Cliente',
   Pedido: 'Pedido',
   ItensPedido: 'ItensPedido'
 } as const
@@ -404,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "produto" | "cliente" | "pedido" | "itensPedido"
+    modelProps: "user" | "produto" | "pedido" | "itensPedido"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -537,72 +536,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ProdutoCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ProdutoCountAggregateOutputType> | number
-        }
-      }
-    }
-    Cliente: {
-      payload: Prisma.$ClientePayload<ExtArgs>
-      fields: Prisma.ClienteFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.ClienteFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.ClienteFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload>
-        }
-        findFirst: {
-          args: Prisma.ClienteFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.ClienteFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload>
-        }
-        findMany: {
-          args: Prisma.ClienteFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload>[]
-        }
-        create: {
-          args: Prisma.ClienteCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload>
-        }
-        createMany: {
-          args: Prisma.ClienteCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        delete: {
-          args: Prisma.ClienteDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload>
-        }
-        update: {
-          args: Prisma.ClienteUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload>
-        }
-        deleteMany: {
-          args: Prisma.ClienteDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.ClienteUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        upsert: {
-          args: Prisma.ClienteUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientePayload>
-        }
-        aggregate: {
-          args: Prisma.ClienteAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCliente>
-        }
-        groupBy: {
-          args: Prisma.ClienteGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ClienteGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.ClienteCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ClienteCountAggregateOutputType> | number
         }
       }
     }
@@ -779,7 +712,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  username: 'username',
+  email: 'email',
   password: 'password',
   createdAt: 'createdAt'
 } as const
@@ -798,15 +731,6 @@ export const ProdutoScalarFieldEnum = {
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
-
-
-export const ClienteScalarFieldEnum = {
-  id: 'id',
-  nome: 'nome',
-  email: 'email'
-} as const
-
-export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
 
 
 export const PedidoScalarFieldEnum = {
@@ -839,7 +763,7 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
 export const UserOrderByRelevanceFieldEnum = {
-  username: 'username',
+  email: 'email',
   password: 'password'
 } as const
 
@@ -854,14 +778,6 @@ export const ProdutoOrderByRelevanceFieldEnum = {
 } as const
 
 export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]
-
-
-export const ClienteOrderByRelevanceFieldEnum = {
-  nome: 'nome',
-  email: 'email'
-} as const
-
-export type ClienteOrderByRelevanceFieldEnum = (typeof ClienteOrderByRelevanceFieldEnum)[keyof typeof ClienteOrderByRelevanceFieldEnum]
 
 
 
@@ -985,7 +901,6 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   produto?: Prisma.ProdutoOmit
-  cliente?: Prisma.ClienteOmit
   pedido?: Prisma.PedidoOmit
   itensPedido?: Prisma.ItensPedidoOmit
 }

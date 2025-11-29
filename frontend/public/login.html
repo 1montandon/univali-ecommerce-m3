@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Picota Shop | Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body style="font-family: Inter, 'Noto Sans', sans-serif">
+    <main class="h-screen flex items-center justify-center">
+      <div
+        class="w-full max-w-[420px] mx-auto mt-10 border border-solid border-[#f0f2f4] rounded-2xl p-6 flex flex-col gap-6"
+      >
+        <form id="login-form" class="flex flex-col gap-6">
+          <h2 class="text-[#111418] text-[22px] font-bold text-center">
+            Login
+          </h2>
+
+          <!-- Email -->
+          <label for="email" class="flex flex-col min-w-40 h-12 w-full">
+            <div class="flex w-full items-stretch rounded-lg h-full">
+              <div
+                class="text-[#617589] flex border-none bg-[#f0f2f4] items-center justify-center pl-4 rounded-l-lg border-r-0"
+              >
+                <span class="material-symbols-outlined"> mail </span>
+              </div>
+              <input
+                id="email"
+                name="email"
+                placeholder="Email"
+                type="email"
+                required
+                autocomplete="email"
+                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-full placeholder:text-[#617589] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+              />
+            </div>
+          </label>
+
+          <!-- Password -->
+          <label for="password" class="flex flex-col min-w-40 h-12 w-full">
+            <div class="flex w-full items-stretch rounded-lg h-full">
+              <div
+                class="text-[#617589] flex border-none bg-[#f0f2f4] items-center justify-center pl-4 rounded-l-lg border-r-0"
+              >
+                <span class="material-symbols-outlined"> lock </span>
+              </div>
+              <input
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                required
+                autocomplete="current-password"
+                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-full placeholder:text-[#617589] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+              />
+            </div>
+          </label>
+
+          <!-- Button -->
+          <button
+            type="submit"
+            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-[#111418] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+            Logar
+          </button>
+        </form>
+
+        <!-- Footer link -->
+        <p class="text-center text-sm text-[#617589]">
+          Não tenho uma conta?
+          <a href="register.html" class="text-[#111418] font-medium">Registre-se</a>
+        </p>
+      </div>
+    </main>
+  </body>
+  <script src="../js/login.js" type="module"></script>
+</html>

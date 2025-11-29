@@ -9,9 +9,10 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  username  String   @unique
+  email  String   @unique
   password  String
   createdAt DateTime @default(now()) @map("created_at")
+  pedidos Pedido[]
 
   @@map("users")
 }
@@ -30,15 +31,6 @@ model Produto {
   @@map("produtos")
 }
 
-model Cliente {
-  id     Int     @id @default(autoincrement())
-  nome   String
-  email  String  @unique
-
-  pedidos Pedido[]
-
-  @@map("clientes")
-}
 
 model Pedido {
   id        Int      @id @default(autoincrement())
@@ -46,7 +38,7 @@ model Pedido {
   clienteId Int       @map("cliente_id")
   total     Decimal   @db.Decimal(10, 2)
 
-  cliente Cliente       @relation(fields: [clienteId], references: [id])
+  cliente User       @relation(fields: [clienteId], references: [id])
   itens   ItensPedido[]
 
   @@map("pedidos")
