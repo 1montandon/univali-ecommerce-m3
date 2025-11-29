@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Picota Shop | Carrinho</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body style="font-family: Inter, 'Noto Sans', sans-serif">
+    <!-- HEADER -->
+    <header
+      class="flex items-center justify-between border-b border-solid border-b-[#f0f2f4] px-50 py-3"
+    >
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-2 text-[#111418]">
+          <span class="text-[#111418] material-symbols-outlined">
+            verified
+          </span>
+          <h2 class="text-[#111418] text-lg font-bold leading-tight">
+            Picota Shop
+          </h2>
+        </div>
+      </div>
+
+      <div class="flex flex-1 justify-end gap-8">
+        <div class="flex gap-2">
+          <a
+            href="./index.html"
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold px-2.5"
+          >
+            <span class="material-symbols-outlined"> home </span>
+          </a>
+
+          <a
+            href="./carrinho.html"
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#a6a6a6] text-white gap-2 text-sm font-bold px-2.5"
+          >
+            <span class="material-symbols-outlined"> shopping_bag </span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="px-50 flex flex-col py-5 gap-5">
+      <h1 class="text-[#111418] text-[22px] font-bold">Meu Carrinho</h1>
+
+      <div id="lista-carrinho" class="flex flex-col gap-4"></div>
+
+      <div id="total-container" class="flex justify-end py-4">
+        <p class="text-[#111418] text-lg font-bold">
+          Total: <span id="total-geral">R$ 0,00</span>
+        </p>
+      </div>
+    </main>
+
+    <script type="module" src="../js/carrinho.js"></script>
+  </body>
+</html>

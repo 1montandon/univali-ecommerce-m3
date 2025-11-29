@@ -7,6 +7,6 @@ import { verifyJWT } from "../middleware/verify-jwt.js";
 const carrinhoRoutes = Router();
 
 // POST /api/carrinho/validar - Valida estoque de um produto
-carrinhoRoutes.post("/validar", verifyJWT, validarEstoqueController);
+  carrinhoRoutes.post("/validar", verifyJWT, validarEstoqueController);
 
 export default carrinhoRoutes;

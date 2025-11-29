@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Picota Shop</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body class="font-sans bg-[#fafafa]">
+    <header
+      class="flex items-center justify-between border-b border-[#f0f2f4] px-6 py-3"
+    >
+      <h1 class="text-xl font-bold text-[#111418]">Checkout</h1>
+
+      <a
+        href="./carrinho.html"
+        class="flex items-center gap-2 px-3 py-1 bg-[#f0f2f4] rounded-lg text-[#111418]"
+      >
+        <span class="material-symbols-outlined"> shopping_bag </span>
+        Voltar ao carrinho
+      </a>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- FORM -->
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-lg font-bold text-[#111418] mb-4">Dados do Cliente</h2>
+
+        <form id="checkout-form" class="flex flex-col gap-4">
+
+          <label class="flex flex-col">
+            <span class="text-[#111418] font-medium">Nome</span>
+            <input
+              id="nome"
+              type="text"
+              required
+              class="p-2 rounded-lg bg-[#f0f2f4]"
+              placeholder="Seu nome completo"
+            />
+          </label>
+
+          <label class="flex flex-col">
+            <span class="text-[#111418] font-medium">E-mail</span>
+            <input
+              id="email"
+              type="email"
+              required
+              class="p-2 rounded-lg bg-[#f0f2f4]"
+              placeholder="voce@email.com"
+            />
+          </label>
+
+          <button
+            id="btn-finalizar"
+            type="submit"
+            class="bg-[#111418] text-white px-4 py-2 rounded-lg hover:bg-black transition flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined"> credit_card </span>
+            Finalizar compra
+          </button>
+        </form>
+      </section>
+
+      <!-- RESUMO -->
+      <section class="bg-white p-6 rounded-lg shadow h-fit">
+        <h2 class="text-lg font-bold text-[#111418] mb-4">Resumo do Pedido</h2>
+
+        <div id="resumo-itens" class="flex flex-col gap-3"></div>
+
+        <p class="text-lg font-semibold text-[#111418] mt-4">
+          Total: <span id="resumo-total">R$ 0,00</span>
+        </p>
+      </section>
+    </main>
+
+    <!-- Modal de sucesso -->
+    <div
+      id="modal-sucesso"
+      class="fixed inset-0 bg-black/60 flex items-center justify-center hidden"
+    >
+      <div class="bg-white p-8 rounded-lg shadow text-center max-w-sm">
+        <h2 class="text-xl font-bold text-[#111418] mb-3">Pedido realizado!</h2>
+        <p class="text-[#617589] mb-4">
+          Número do pedido:
+          <span id="pedido-id" class="font-bold text-[#111418]"></span>
+        </p>
+
+        <a
+          href="./index.html"
+          class="bg-[#111418] text-white px-4 py-2 rounded-lg inline-block"
+        >
+          Voltar ao início
+        </a>
+      </div>
+    </div>
+
+    <script type="module" src="../js/checkout.js"></script>
+  </body>
+</html>

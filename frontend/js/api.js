@@ -15,7 +15,7 @@ export async function apiFetch(endpoint, options = {}) {
 
 
   // Se servidor retornou 401
-  if (response.status == 401) {
+  if (response.status === 401) {
     localStorage.removeItem("accessToken");
     window.location.href = "/frontend/public/login.html"; // redireciona
     return; // evita continuar

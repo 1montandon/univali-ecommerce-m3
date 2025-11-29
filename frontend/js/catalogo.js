@@ -53,7 +53,7 @@ import { apiFetch } from "./api.js";
       card.dataset.id = p.id;
       card.dataset.categoria = p.categoria;
 
-    card.innerHTML = `
+      card.innerHTML = `
     <div class="w-full h-[300px] p-4 rounded-lg overflow-hidden bg-[#f5f5f5] ">
   <img
     src="${p.imagemUrl}"
@@ -79,20 +79,67 @@ import { apiFetch } from "./api.js";
     </div>
     `;
 
+      const btnAdd = card.querySelector(".add-carinho");
+      
+      btnAdd.addEventListener("click", (e) => {
+        e.stopPropagation(); // impede abrir página ao clicar no carrinho
+        adicionarAoCarrinho(p.id);
+      });
 
-    const btnAdd = card.querySelector(".add-carinho");
-
-    btnAdd.addEventListener("click", () => {
-        text(p.id)
-    });
-    
+      card.addEventListener("click", () => {
+        window.location.href = `./produto.html?id=${p.id}`;
+      });
 
       container.appendChild(card);
     });
   }
 
-  function text(id){
-    console.log(id)
+  function adicionarAoCarrinho(produtoId) {
+    // 1. Carregar carrinho do localStorage
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    // 2. Verificar se o produto já está no carrinho
+    const itemExistente = carrinho.find((item) => item.produtoId === produtoId);
+
+    const novaQuantidade = itemExistente ? itemExistente.quantidade + 1 : 1;
+
+    // 3. Validar estoque no backend
+    apiFetch("/carrinho/validar", {
+      method: "POST",
+      body: {
+        produtoId,
+        quantidade: novaQuantidade,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (!json.sucesso) {
+          alert(
+            `❌ Estoque insuficiente. Disponível: ${json.dados?.estoque}, solicitado: ${json.dados?.solicitado}`
+          );
+          return;
+        }
+
+        // 4. Atualizar carrinho local
+
+        if (itemExistente) {
+          itemExistente.quantidade = novaQuantidade;
+        } else {
+          carrinho.push({
+            produtoId,
+            quantidade: 1,
+          });
+        }
+
+        // 5. Salvar no localStorage
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+        alert("✔️ Produto adicionado ao carrinho!");
+      })
+      .catch((e) => {
+        console.error("Erro ao validar estoque:", e);
+        alert("Erro ao adicionar ao carrinho!");
+      });
   }
 
   buscarProdutos();

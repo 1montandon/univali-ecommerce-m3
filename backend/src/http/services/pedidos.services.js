@@ -109,7 +109,7 @@ export async function obterPedido(pedidoId) {
       cliente: {
         select: { id: true, username: true },
       },
-      itensPedido: {
+      itens: {
         include: {
           produto: {
             select: { id: true, titulo: true },
@@ -128,7 +128,7 @@ export async function obterPedido(pedidoId) {
     numero: `PED-${String(pedido.id).padStart(6, "0")}`,
     data: pedido.data,
     cliente: pedido.cliente,
-    itens: pedido.itens_pedido.map((item) => ({
+    itens: pedido.itens.map((item) => ({
       produtoId: item.produto_id,
       titulo: item.produto.titulo,
       quantidade: item.quantidade,

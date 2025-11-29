@@ -8,7 +8,12 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+  })
+);
 
 app.get("/health", (req, res) => {
   res.json({ ok: true });

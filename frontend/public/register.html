@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Picota Shop | Login</title>
+    <title>Picota Shop | Register</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
@@ -22,9 +22,9 @@
       <div
         class="w-full max-w-[420px] mx-auto mt-10 border border-solid border-[#f0f2f4] rounded-2xl p-6 flex flex-col gap-6"
       >
-        <form id="login-form" class="flex flex-col gap-6">
+        <form id="register-form" class="flex flex-col gap-6">
           <h2 class="text-[#111418] text-[22px] font-bold text-center">
-            Login
+            Create Account
           </h2>
 
           <!-- Email -->
@@ -61,7 +61,7 @@
                 placeholder="Password"
                 type="password"
                 required
-                autocomplete="current-password"
+                autocomplete="new-password"
                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-full placeholder:text-[#617589] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
               />
             </div>
@@ -71,18 +71,19 @@
           <button
             type="submit"
             class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-[#111418] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em]"
-            >
-            Logar
+          >
+            Criar Conta
           </button>
         </form>
 
         <!-- Footer link -->
         <p class="text-center text-sm text-[#617589]">
-          Não tenho uma conta?
-          <a href="register.html" class="text-[#111418] font-medium">Registre-se</a>
+          Já tem uma conta?
+          <a href="login.html" class="text-[#111418] font-medium">Log in</a>
         </p>
       </div>
     </main>
   </body>
-  <script src="../js/login.js" type="module"></script>
+
+  <script src="../js/register.js" type="module"></script>
 </html>
