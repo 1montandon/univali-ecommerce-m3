@@ -11,29 +11,52 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
 
-  <body class="font-sans bg-[#fafafa]">
+  <body style="font-family: Inter, 'Noto Sans', sans-serif">
     <header
-      class="flex items-center justify-between border-b border-[#f0f2f4] px-6 py-3"
+      class="flex items-center justify-between border-b border-solid border-b-[#f0f2f4] px-50 py-3"
     >
-      <h1 class="text-xl font-bold text-[#111418]">Checkout</h1>
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-2 text-[#111418]">
+          <span class="text-[#111418] material-symbols-outlined">
+            verified
+          </span>
+          <h2 class="text-[#111418] text-lg font-bold leading-tight">
+            Picota Shop
+          </h2>
+        </div>
+      </div>
+      <div class="flex flex-1 justify-end gap-8">
+        <div class="flex gap-2">
+          <a
+            href="./index.html"
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#a6a6a6] text-white gap-2 text-sm font-bold px-2.5"
+          >
+            <span class="material-symbols-outlined"> home </span>
+          </a>
 
-      <a
-        href="./carrinho.html"
-        class="flex items-center gap-2 px-3 py-1 bg-[#f0f2f4] rounded-lg text-[#111418]"
-      >
-        <span class="material-symbols-outlined"> shopping_bag </span>
-        Voltar ao carrinho
-      </a>
+          <a
+            href="./carrinho.html"
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold px-2.5"
+          >
+            <span class="material-symbols-outlined"> shopping_cart </span>
+          </a>
+
+          <a
+            href="./pedidos.html"
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold px-2.5"
+          >
+            <span class="material-symbols-outlined"> shopping_bag </span>
+          </a>
+        </div>
+      </div>
     </header>
 
     <main class="max-w-4xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10">
-
       <!-- FORM -->
       <section class="bg-white p-6 rounded-lg shadow">
         <h2 class="text-lg font-bold text-[#111418] mb-4">Dados do Cliente</h2>
 
         <form id="checkout-form" class="flex flex-col gap-4">
-
           <label class="flex flex-col">
             <span class="text-[#111418] font-medium">Nome</span>
             <input

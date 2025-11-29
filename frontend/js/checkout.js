@@ -59,18 +59,16 @@ import { apiFetch } from "./api.js";
       });
 
       const json = await resposta.json();
-
-      if (!json.sucesso) {
-        alert(`❌ Erro ao finalizar: ${json.mensagem}`);
-        return;
-      }
+      console.log(json)
 
       // sucesso -> mostrar modal
-      document.getElementById("pedido-id").textContent = json.dados.pedidoId;
+      document.getElementById("pedido-id").textContent = json.id;
       document.getElementById("modal-sucesso").classList.remove("hidden");
 
       // limpar carrinho
       localStorage.removeItem("carrinho");
+      window.location.href = `./pedidos.html`;
+
     } catch (err) {
       console.error(err);
       alert("Erro ao enviar pedido.");
