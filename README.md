@@ -1,256 +1,68 @@
-# **UNIVERSIDADE DO VALE DO ITAJAÍ – UNIVALI**
+**Projeto**
 
-### **Disciplina:** Programação Web
+- **Nome:**: Picota Shop - Eduardo Montandon, Yan Battiston 
+- **Descrição:**: Aplicação de exemplo para um e‑commerce contendo frontend estático (HTML/JS) e backend em Node.js com Prisma para acesso ao banco. O frontend fornece páginas de catálogo, produto, carrinho, checkout, login e registro; o backend expõe rotas HTTP para autenticação, produtos, pedidos e carrinho.
 
-### **Professor(a):** Welington Gadelha
+**Tecnologias**
 
-## **Trabalho M3 – Projeto de E-commerce**
+- **Frontend:**: HTML, CSS, JavaScript (arquivos em `frontend/public` e `frontend/js`).
+- **Backend:**: Node.js, Express, Prisma, JWT, bcrypt (código em `backend/src`).
+- **Banco / ORM:**: Prisma (schema em `backend/src/db/schema.prisma`).
+- **Outras:**: Docker / Docker Compose (arquivo `backend/docker-compose.yaml`).
 
-Ao longo do semestre vocês trabalharam com:
+**Estrutura do projeto**
 
-* Modularização de algoritmos
-* Programação no lado cliente (bibliotecas de funções, objetos embutidos do navegador, formulários, eventos e fluxo assíncrono com JavaScript)
-* Programação no lado servidor com persistência de dados
+- **Raiz do repositório:**: contém as pastas `backend/` e `frontend/`.
+- **Backend:**: `backend/src/` — servidor, controllers, serviços e configuração do Prisma.
+- **Frontend:**: `frontend/public/` — páginas estáticas; `frontend/js/` — scripts do cliente.
 
-Neste trabalho de M3, você irá evoluir o e-commerce fake construído em aula com a FakeStore API para um sistema completo com:
+**Como rodar (local)**
 
-* Back-end próprio
-* Banco MySQL
-* Front-end dinâmico
+- **Backend (modo desenvolvimento):**
 
----
+  1. Abra um terminal e vá para a pasta do backend:
 
-# **Objetivo**
+     `cd backend`
 
-Desenvolver uma aplicação web de e-commerce que:
+  2. Instale dependências:
 
-* Consuma os produtos da FakeStore API
-* Persista os dados em um banco MySQL próprio
-* Implemente o fluxo completo de compra:
-  **catálogo → carrinho → checkout → registro de pedidos**
-* Exiba e controle o estoque em tempo real
-* Permita consultar “minhas compras” (cliente)
+     `npm install`
 
-O sistema deve demonstrar habilidades de: modularização de algoritmos, programação cliente (DOM, eventos, formulários, async) e servidor com persistência.
+  3. Execute em modo de desenvolvimento:
 
----
+     `npm run dev`
 
-# **Requisitos do Back-end**
+  O script disponível no `package.json` do backend é `dev` (executa `node --watch --experimental-strip-types src/server.js`).
 
-Tecnologias: **Node.js**, **Express**, **MySQL**
+- **Frontend (páginas estáticas):**
 
-Banco deve ter, no mínimo, as tabelas:
+  - Simplesmente abra os arquivos HTML em `frontend/public` em um navegador (por exemplo, abra `frontend/public/index.html`).
+  - Ou sirva a pasta com um servidor estático para evitar problemas de CORS/API: por exemplo, usando `npx serve` ou Python:
 
-* **Produtos**
-* **Pedidos**
-* **ItensPedido**
-* **Clientes**
+    `npx serve frontend/public`
+    ou
+    `cd frontend/public && python -m http.server 3000`
 
-(Modelagem livre)
+- **Rodar com Docker Compose (opcional):**
 
----
+  - A partir da pasta `backend`, execute:
 
-## **Importação da FakeStore API**
+    `cd backend && docker compose up --build`
 
-Criar uma rotina (ativada por endpoint) que:
+  Isso irá construir e iniciar os serviços definidos em `backend/docker-compose.yaml`.
 
-* Consuma `/products` da FakeStore API
-* Converta para o modelo da tabela Produtos
-* Insira ou atualize dados no MySQL
-* Defina um estoque inicial (fixo ou calculado)
+**Variáveis de ambiente importantes**
 
----
+- **DATABASE_URL:**: string de conexão do banco para o Prisma.
+- **JWT_SECRET** (ou nome similar): chave secreta para geração/validação de tokens JWT.
 
-## **Endpoints obrigatórios**
+Crie um arquivo `.env` na pasta `backend` com essas variáveis antes de iniciar o servidor, se necessário.
 
-### **1. Listar produtos**
+**Observações**
 
-Retornar, para cada produto:
+- O backend depende do Prisma; após configurar `DATABASE_URL` e o banco, é possível rodar migrações se houver scripts/arquivos de migração sob `backend/src/db/migrations`.
+- Os endpoints e rotas estão em `backend/src/http/routes` e os controladores em `backend/src/http/controllers`.
 
-* id
-* título
-* preço
-* categoria
-* imagem_url
-* estoque atual
+**Contato / Próximos passos**
 
-Filtros opcionais:
-
-* categoria
-* trecho do nome/título
-
----
-
-### **2. Detalhar produto**
-
-Retornar todos os dados incluindo estoque atual.
-
----
-
-### **3. Validação de estoque ao adicionar ao carrinho**
-
-Endpoint deve:
-
-* Consultar o estoque atual no banco
-* Considerar concorrência (múltiplos usuários comprando ao mesmo tempo)
-* Validação deve ser sempre no banco, não no front-end
-
----
-
-### **4. Criar pedido**
-
-Recebe: itens selecionados + dados do cliente
-
-Fluxo:
-
-1. Revalidar estoque com base nas quantidades finais
-2. Se faltar estoque → retornar erro e **não** criar pedido
-3. Caso ok →
-
-   * Criar registro em **Pedidos**
-   * Criar registros em **ItensPedido**
-   * Atualizar estoque dos produtos (decremento)
-
----
-
-### **5. Listar minhas compras**
-
-Retornar todos os pedidos de um cliente.
-
----
-
-## **Organização obrigatória (Back-end)**
-
-* Separar:
-  **rotas → controllers → serviços/repositórios → acesso ao banco**
-* Evidenciar modularização
-
----
-
-# **Requisitos do Front-end**
-
-Tecnologias permitidas:
-
-* HTML
-* CSS
-* JavaScript
-* Bootstrap, Tailwind ou similar (opcional)
-
----
-
-# **Telas mínimas**
-
-### **1. Catálogo de produtos**
-
-Exibir:
-
-* imagem
-* nome
-* preço
-* categoria
-* estoque atual
-
-Permitir:
-
-* filtrar por categoria
-* buscar por texto
-* botão “Adicionar ao carrinho” com validação via back-end
-
----
-
-### **2. Detalhes do produto**
-
-Exibir:
-
-* imagem destacada
-* título
-* descrição
-* preço
-* categoria
-* estoque atual
-
-Permitir adicionar ao carrinho (com validação no back-end).
-
----
-
-### **3. Carrinho de compras**
-
-Exibir lista com:
-
-* nome
-* quantidade
-* preço unitário
-* subtotal
-
-Permitir:
-
-* alterar quantidade (ideal revalidando estoque)
-* remover itens
-* botão **“Ir para checkout”** (desabilitar se vazio)
-
----
-
-### **4. Checkout**
-
-Formulário:
-
-* nome
-* e-mail
-
-Exibir:
-
-* resumo do carrinho
-
-Botão:
-
-* **Finalizar compra** → enviar para o back-end
-
-Resultado:
-
-* Exibir **confirmação de sucesso** (ex.: número do pedido)
-* Ou **erro** (ex.: estoque insuficiente)
-
----
-
-### **5. Minhas compras**
-
-* Campo: digitar e-mail do cliente
-* Exibir lista de pedidos com:
-
-  * data
-  * valor total
-  * produtos de cada pedido
-
----
-
-# **Requisitos de Código e Organização**
-
-### **Modularização**
-
-* **Back-end:** rotas, controllers, serviços, banco
-* **Front-end:** separar funções e arquivos (ex.: módulo carrinho, módulo catálogo)
-
-### **Persistência**
-
-* Produtos, pedidos e itens devem estar no MySQL
-* Nada só em memória
-
-### **Boas práticas**
-
-* Tratamento de erros no back-end
-* Retornar códigos HTTP adequados
-* Mensagens amigáveis no front-end
-
----
-
-# **Entrega**
-
-* Enviar o projeto em um repositório GitHub
-
-* Incluir **README.md** com:
-
-  * descrição do projeto
-  * lista de tecnologias
-
-* Publicar o link no AVA (atividade M3)
-
+- Para testes locais rápidos, inicie o backend (`npm run dev`) e abra as páginas em `frontend/public`.
